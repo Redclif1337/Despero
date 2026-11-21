@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg: #0c0f0d;
+    --panel: rgba(46, 232, 139, .05);
+    --line: rgba(46, 232, 139, .22);
+    --accent: #2ee88f;
+    --text: #e9f2ec;
+    --muted: rgba(233, 242, 236, .6);
+    --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.project-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+}
+
+.project-page .back-link {
+    display: inline-block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    transition: color .3s;
+}
+.project-page .back-link:hover { color: var(--accent); }
+
+.project-page h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 0 10px;
+    line-height: 1.15;
+}
+.project-page h1 span { color: var(--accent); }
+
+.project-page .subtitle {
+    color: var(--muted);
+    font-size: 18px;
+    margin: 0 0 40px;
+}
+
+.project-page .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.project-page .meta-item {
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 8px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: var(--accent);
+}
+
+.project-page h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 45px 0 22px;
+}
+.project-page h2::after {
+    content: '';
+    flex: 0 0 60px;
+    height: 1px;
+    background: var(--line);
+}
+
+.project-page p {
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 700px;
+    margin: 0 0 15px;
+}
+
+.project-page ul {
+    list-style: none;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 760px;
+}
+.project-page ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 14px;
+}
+.project-page ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.project-page .screenshots img {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(46, 232, 139, .14);
+    margin-bottom: 28px;
+    transition: border-color .5s ease, box-shadow .5s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+.project-page .screenshots img:hover {
+    border-color: var(--line);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+    transform: scale(1.01);
+}
+
+.project-page .project-links {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+}
+
+.project-page .btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 14px 34px;
+    border: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-right: 15px;
+    transition: background .3s, border-color .3s, box-shadow .3s;
+}
+.project-page .btn:hover {
+    background: var(--panel);
+    border-color: var(--accent);
+    box-shadow: 0 0 22px rgba(46, 232, 139, .35), inset 0 0 14px rgba(46, 232, 139, .12);
+}
+.project-page .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--line);
+}
+.project-page .btn.ghost:hover {
+    background: var(--panel);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 22px rgba(46, 232, 139, .35), inset 0 0 14px rgba(46, 232, 139, .12);
+}
+
+@media (max-width: 600px) {
+    .project-page h1 { font-size: 30px; }
+}
+
+
+/* ---- Скрины: базовая обводка + ховер ---- */
+.project-page .screenshots img {
+    cursor: pointer;
+    border: 1px solid rgba(46, 232, 139, .18);
+    transition: border-color .5s ease, box-shadow .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1);
+}
+.project-page .screenshots img:hover {
+    border-color: rgba(46, 232, 139, .5);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
+    transform: scale(1.01);
+}
+
+/* ---- Лайтбокс ---- */
+.lightbox {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(4, 8, 6, .94);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+}
+.lightbox[hidden] { display: none; }
+.lightbox figure { max-width: 92vw; max-height: 88vh; text-align: center; }
+.lightbox img {
+    max-width: 100%; max-height: 78vh;
+    width: auto;
+    border: 1px solid var(--line);
+    margin: 0;
+    transform: none; box-shadow: none;
+    cursor: default;
+}
+.lightbox figcaption {
+    font-family: var(--mono);
+    font-size: 13px; color: var(--muted);
+    letter-spacing: .1em;
+    padding-top: 14px;
+}
+.lightbox button {
+    position: fixed;
+    background: none; border: 1px solid var(--line);
+    color: var(--accent); font-size: 22px;
+    width: 44px; height: 44px; cursor: pointer;
+    transition: background .3s, border-color .3s;
+}
+.lightbox button:hover { background: var(--panel); border-color: var(--accent); }
+.lb-close { top: 20px; right: 20px; }
+.lb-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+.lb-next  { right: 20px; top: 50%; transform: translateY(-50%); }

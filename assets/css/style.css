@@ -537,10 +537,12 @@ canvas {
 	color: rgba(255, 255, 255, .8);
 }
 
-.social a:focus,
-.social button:focus {
-    outline: none;
+.social a:focus-visible {
+    outline: 2px solid rgba(46, 232, 139, .6);
+    outline-offset: 3px;
+    border-radius: 50%;
 }
+
 
 
 /* ---------------------------------------------- /*

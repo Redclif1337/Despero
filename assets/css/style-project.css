@@ -1,131 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+/* =========================================================
+   Единый файл страниц проектов: Bit Pixel, Photo Gallery,
+   My Workspace. Токены, темы и кнопки fab — в style.css.
+   ========================================================= */
 
-:root {
-    --bg: #0c0f0d;
-    --panel: rgba(46, 232, 139, .05);
-    --line: rgba(46, 232, 139, .22);
-    --accent: #2ee88f;
-    --text: #e9f2ec;
-    --muted: rgba(233, 242, 236, .6);
-    --mono: 'JetBrains Mono', monospace;
-}
+:root { --glow: rgba(46, 232, 139, .35); }
+html.theme-fern  { --glow: rgba(143, 184, 174, .25); }
+html.theme-orbit { --glow: rgba(79, 216, 232, .35); }
+html.theme-xber  { --glow: rgba(255, 106, 60, .35); }
+html.theme-ex8   { --glow: rgba(255, 255, 255, .35); }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-size: 16px; line-height: 1.8; }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
+#bg-particles {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0; opacity: .5;
+    pointer-events: none;
 }
 
 .project-page {
+    position: relative; z-index: 1;
     max-width: 900px;
     margin: 0 auto;
-    padding: 60px 20px 80px;
+    padding: 60px 24px 80px;
 }
 
 .project-page .back-link {
     display: inline-block;
-    color: var(--muted);
-    text-decoration: none;
+    color: var(--muted); text-decoration: none;
     font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 40px;
     transition: color .3s;
 }
 .project-page .back-link:hover { color: var(--accent); }
 
 .project-page h1 {
-    font-size: 42px;
-    font-weight: 800;
+    margin: 28px 0 16px;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 800; line-height: 1.15;
     color: var(--text);
-    margin: 0 0 10px;
-    line-height: 1.15;
 }
 .project-page h1 span { color: var(--accent); }
 
 .project-page .subtitle {
+    font-size: 18px; max-width: 640px;
     color: var(--muted);
-    font-size: 18px;
-    margin: 0 0 40px;
 }
 
 .project-page .project-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 40px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin: 26px 0 10px;
 }
 .project-page .meta-item {
-    background: transparent;
     border: 1px solid var(--line);
     padding: 8px 16px;
     font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: .08em;
+    font-size: 12px; letter-spacing: .08em;
     color: var(--accent);
 }
 
+/* ---- Секции: моно-ярлык + линия, как на главной ---- */
 .project-page h2 {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display: flex; align-items: center; gap: 14px;
     font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: .3em;
-    text-transform: uppercase;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .3em; text-transform: uppercase;
     color: var(--accent);
-    margin: 45px 0 22px;
+    margin: 64px 0 22px;
 }
-.project-page h2::after {
-    content: '';
-    flex: 0 0 60px;
-    height: 1px;
-    background: var(--line);
-}
+.project-page h2::after { content: ''; flex: 0 0 60px; height: 1px; background: var(--line); }
 
-.project-page p {
-    line-height: 1.8;
-    color: var(--text);
-    max-width: 700px;
-    margin: 0 0 15px;
-}
+.project-page p { max-width: 640px; color: var(--text); margin: 0 0 15px; }
+.project-page .muted { color: var(--muted); }
 
-.project-page ul {
-    list-style: none;
-    color: var(--text);
-    line-height: 1.8;
-    max-width: 760px;
-}
+/* ---- Список «Что сделано» ---- */
+.project-page ul { list-style: none; max-width: 760px; }
 .project-page ul li {
     position: relative;
     padding-left: 28px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 .project-page ul li::before {
     content: '›';
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--accent);
-    font-weight: 600;
+    position: absolute; left: 0; top: 0;
+    color: var(--accent); font-weight: 600;
 }
+.project-page b,
+.project-page strong { font-weight: 600; color: var(--text); }
 
-.project-page .screenshots img {
-    display: block;
-    width: 100%;
-    border: 1px solid rgba(46, 232, 139, .14);
-    margin-bottom: 28px;
-    transition: border-color .5s ease, box-shadow .5s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+/* ---- Кнопки ---- */
+.project-page .btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 14px 28px;
+    border: 1px solid var(--line);
+    color: var(--accent); text-decoration: none;
+    font-family: var(--mono); font-size: 13px;
+    letter-spacing: .18em; text-transform: uppercase;
+    background: transparent;
+    transition: background .3s, border-color .3s, box-shadow .3s;
 }
-.project-page .screenshots img:hover {
-    border-color: var(--line);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
-    transform: scale(1.01);
+.project-page .btn:hover {
+    background: var(--panel);
+    border-color: var(--accent);
+    box-shadow: 0 0 22px var(--glow), inset 0 0 14px var(--glow);
 }
 
 .project-page .project-links {
@@ -133,64 +110,166 @@ body {
     padding-top: 30px;
     border-top: 1px solid var(--line);
 }
+.project-page .project-links .btn { margin: 0 15px 0 0; }
 
-.project-page .btn {
-    display: inline-block;
-    background: transparent;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 14px 34px;
-    border: 1px solid var(--line);
+/* ---- Цитата-итог ---- */
+.quote {
+    max-width: 860px;
+    padding: 20px 26px;
+    border-left: 2px solid var(--accent);
+    background: var(--panel);
+    font-size: 17px;
+    color: var(--text);
+}
+
+/* ---- Футер страницы ---- */
+.pfooter {
+    margin-top: 80px;
     font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    margin-right: 15px;
-    transition: background .3s, border-color .3s, box-shadow .3s;
+    font-size: 12px; letter-spacing: .1em;
+    color: var(--muted);
 }
-.project-page .btn:hover {
-    background: var(--panel);
-    border-color: var(--accent);
-    box-shadow: 0 0 22px rgba(46, 232, 139, .35), inset 0 0 14px rgba(46, 232, 139, .12);
+.pfooter span { color: var(--accent); }
+
+/* ---- Переключатель A/B ---- */
+.variant-switch {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 30px;
 }
-.project-page .btn.ghost {
-    background: transparent;
-    color: var(--accent);
+.vs-label {
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: .15em; color: var(--muted);
+}
+.vs-btn {
+    background: none;
     border: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: .08em;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: color .3s, border-color .3s, background .3s, box-shadow .3s;
 }
-.project-page .btn.ghost:hover {
-    background: var(--panel);
+.vs-btn:hover,
+.vs-btn.is-active {
     color: var(--accent);
     border-color: var(--accent);
-    box-shadow: 0 0 22px rgba(46, 232, 139, .35), inset 0 0 14px rgba(46, 232, 139, .12);
+    background: var(--panel);
+    box-shadow: 0 0 14px var(--glow);
 }
 
-@media (max-width: 600px) {
-    .project-page h1 { font-size: 30px; }
+/* ---- Галерея ---- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
 }
+@media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
 
-
-/* ---- Скрины: базовая обводка + ховер ---- */
-.project-page .screenshots img {
+.shot {
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(46, 232, 139, .18);
+    margin: 0;
+}
+.shot img {
+    display: block; width: 100%; height: auto;
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+.shot:hover img { transform: scale(1.05); }
+
+.gallery figcaption {
+    position: absolute; left: 0; right: 0;
+    display: flex; align-items: baseline; gap: 12px;
+    pointer-events: none;
+}
+.num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: .15em;
+}
+.cap {
+    font-family: var(--mono); font-size: 13px; font-weight: 400;
+    letter-spacing: .1em; color: var(--text);
+}
+
+/* ===== ВАРИАНТ A: тонкая линия ===== */
+.gallery[data-variant="a"] .shot::after {
+    content: '';
+    position: absolute; inset: 14px;
+    border: 1px solid transparent;
+    transition: border-color .6s ease;
+    pointer-events: none;
+}
+.gallery[data-variant="a"] .shot:hover::after { border-color: rgba(233, 242, 236, .35); }
+.gallery[data-variant="a"] .shot::before {
+    content: '';
+    position: absolute; top: 14px; left: 14px;
+    width: 22px; height: 22px;
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+}
+.gallery[data-variant="a"] .shot:hover::before { opacity: .9; }
+.gallery[data-variant="a"] figcaption {
+    left: 26px; bottom: 24px; right: 26px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .55s ease, transform .55s ease;
+}
+.gallery[data-variant="a"] .shot:hover figcaption { opacity: 1; transform: translateY(0); }
+.gallery[data-variant="a"] .cap { color: var(--text); text-shadow: 0 1px 12px rgba(6, 12, 9, .9); }
+.gallery[data-variant="a"] .num::after { content: '——'; margin-left: 10px; color: var(--line); }
+
+/* ===== ВАРИАНТ B: рамка с подписью ===== */
+.gallery[data-variant="b"] .shot {
+    border: 1px solid var(--line);
+    transition: border-color .5s ease, box-shadow .5s ease;
+}
+.gallery[data-variant="b"] .shot:hover {
+    border-color: var(--accent);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+}
+.gallery[data-variant="b"] figcaption {
+    left: 0; right: 0; bottom: 0;
+    padding: 40px 18px 14px;
+    background: linear-gradient(transparent, rgba(6, 12, 9, .9));
+    opacity: 0;
+    transform: translateY(24%);
+    transition: transform .55s cubic-bezier(.2, .7, .2, 1), opacity .55s ease;
+}
+.gallery[data-variant="b"] .shot:hover figcaption { opacity: 1; transform: translateY(0); }
+
+/* ---- Скриншоты Bit Pixel / Photo Gallery ---- */
+.screenshots {
+    display: grid; gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 640px) { .screenshots { grid-template-columns: 1fr; } }
+.screenshots img {
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #111;
     transition: border-color .5s ease, box-shadow .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1);
 }
-.project-page .screenshots img:hover {
-    border-color: rgba(46, 232, 139, .5);
+.screenshots img:hover {
+    border-color: var(--accent);
     box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
     transform: scale(1.01);
 }
 
 /* ---- Лайтбокс ---- */
 .lightbox {
-    position: fixed; inset: 0; z-index: 50;
+    position: fixed; inset: 0; z-index: 1200;
     background: rgba(4, 8, 6, .94);
     display: flex; align-items: center; justify-content: center;
     padding: 40px;
 }
 .lightbox[hidden] { display: none; }
-.lightbox figure { max-width: 92vw; max-height: 88vh; text-align: center; }
+.lightbox figure { max-width: 92vw; max-height: 88vh; text-align: center; margin: 0; }
 .lightbox img {
     max-width: 100%; max-height: 78vh;
     width: auto;
@@ -204,6 +283,7 @@ body {
     font-size: 13px; color: var(--muted);
     letter-spacing: .1em;
     padding-top: 14px;
+    position: static;
 }
 .lightbox button {
     position: fixed;
